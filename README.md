@@ -3,11 +3,7 @@ Spell Tracker for League of Legends
 
 -----
 
-![spell_tracker_1](https://github.com/Lessyzz/Spell-Tracker/assets/102208615/e0f1eaa6-31f3-422d-b561-aa870243e27d)
-
-![spell_tracker_2](https://github.com/Lessyzz/Spell-Tracker/assets/102208615/2da6c786-a2d8-4ef0-9974-8308e1c9534a)
-
-![image](https://github.com/Lessyzz/Spell-Tracker/assets/102208615/8cab532a-7dce-4910-8295-0e38f6b5cf30)
+![image](https://github.com/Lessyzz/Spell-Tracker/assets/102208615/4d5eaa47-c376-41d7-ac19-8dcc98e72374)
 
 https://github.com/Lessyzz/Spell-Tracker/assets/102208615/3af06fc9-bd8f-4341-b3c4-c25f4dceab61
 
