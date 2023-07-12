@@ -20,18 +20,46 @@ class Spell_Tracker():
     def move_app(self, e):
         self.root.geometry(f"+{e.x_root}+{e.y_root}")
 
+    def back(self):
+        self.back_B.destroy()
+        self.root.geometry("350x225+300+850")
+        self.title_bar_F.destroy()
+
+        self.f_champ_L.destroy()
+        self.s_champ_L.destroy()
+        self.t_champ_L.destroy()
+        self.fo_champ_L.destroy()
+        self.fi_champ_L.destroy()
+
+        self.f_champ_speel_CB_img_1_B.destroy()
+        self.f_champ_speel_CB_img_2_B.destroy()
+
+        self.s_champ_speel_CB_img_1_B.destroy()
+        self.s_champ_speel_CB_img_2_B.destroy()
+
+        self.t_champ_speel_CB_img_1_B.destroy()
+        self.t_champ_speel_CB_img_2_B.destroy()
+
+        self.fo_champ_speel_CB_img_1_B.destroy()
+        self.fo_champ_speel_CB_img_2_B.destroy()
+
+        self.fi_champ_speel_CB_img_1_B.destroy()
+        self.fi_champ_speel_CB_img_2_B.destroy()
+
+        self.gui_main()
+
     def gui_main(self):
 
         # Title bar
 
-        title_bar_F = Frame(self.root, background = "#F8D7FF", relief = "raised", bd = 0)
-        title_bar_F.pack(fill = X)
-        title_bar_F.bind("<B1-Motion>", self.move_app)
+        self.title_bar_F = Frame(self.root, background = "#F8D7FF", relief = "raised", bd = 0)
+        self.title_bar_F.pack(fill = X)
+        self.title_bar_F.bind("<B1-Motion>", self.move_app)
 
-        title_bar_L = Label(title_bar_F, background = "#F8D7FF", foreground = "black", text = "Spell Tracker", font = "Courier 8 bold")
+        title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Spell Tracker", font = "Courier 8 bold")
         title_bar_L.pack(side = "left", padx = 5, pady = 3)
 
-        x_B = Button(title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = self.root.destroy)
+        x_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = self.root.destroy)
         x_B.pack(side = "right", padx = 5, pady = 3)
 
         # Labels
@@ -118,7 +146,6 @@ class Spell_Tracker():
         self.fi_get_cb_1 = self.fi_champ_speel_CB_1.get()
         self.fi_get_cb_2 = self.fi_champ_speel_CB_2.get()
 
-
         self.f_champ_L.destroy()
         self.s_champ_L.destroy()
         self.t_champ_L.destroy()
@@ -141,6 +168,9 @@ class Spell_Tracker():
 
     def create_interface(self):
         self.root.geometry("250x235+300+840")
+
+        self.back_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "<-", font = "Courier 8 bold", bd = 0, command = self.back)
+        self.back_B.pack(side = "right", pady = 3)
 
         self.f_champ_L = Label(self.root, font = "Courier 12 bold", text = self.f_get, background = "black", width = 10, anchor = "w", fg = "red")
         self.f_champ_L.pack(), self.f_champ_L.place(x = 5, y = 38)
@@ -214,7 +244,6 @@ class Spell_Tracker():
 
         self.fi_champ_speel_CB_img_2_B = Button(self.root, bg = "black", fg = "green", image = fi_get_cb_2_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.fi_get_cb_2, 310, 170))
         self.fi_champ_speel_CB_img_2_B.pack(), self.fi_champ_speel_CB_img_2_B.place(x = 210, y = 195)
-
 
         self.root.mainloop()
 
