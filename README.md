@@ -1,4 +1,4 @@
-# Spell-Tracker
+# spelltracker
 Spell Tracker for League of Legends
 
 -----
