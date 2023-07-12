@@ -125,8 +125,8 @@ class SpellTracker():
     def spell_timer_command_2(self, label, timee):
             while timee > 0:
                 label.config(text = timee)
-                time.sleep(1)
                 timee -= 1
+                time.sleep(1)
             label.destroy()
 
     def get_character_image(self, label, character_id):
