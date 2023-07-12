@@ -9,5 +9,7 @@ Spell Tracker for League of Legends
 
 This project is using Riot Games Api (https://developer.riotgames.com/).
 Receiving live game data with Api and processing them.
+
 Currently received data:
+
 Enemy and ally team; Nicknames, Champions, Spells.
