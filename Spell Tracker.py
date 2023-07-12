@@ -14,6 +14,7 @@ class Spell_Tracker():
         self.root.config(background = "black")
         self.root.overrideredirect(True)
         self.root.attributes('-topmost', True)
+        self.root.attributes('-alpha', 0.7)
         self.gui_main()
 
     def move_app(self, e):
@@ -139,7 +140,7 @@ class Spell_Tracker():
         self.create_interface()
 
     def create_interface(self):
-        self.root.geometry("350x235+300+840")
+        self.root.geometry("250x235+300+840")
 
         self.f_champ_L = Label(self.root, font = "Courier 12 bold", text = self.f_get, background = "black", width = 10, anchor = "w", fg = "red")
         self.f_champ_L.pack(), self.f_champ_L.place(x = 5, y = 38)
@@ -181,38 +182,38 @@ class Spell_Tracker():
 
 
         self.f_champ_speel_CB_img_1_B = Button(self.root, bg = "black", fg = "green", image = f_get_cb_1_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.f_get_cb_1, 270, 10))
-        self.f_champ_speel_CB_img_1_B.pack(), self.f_champ_speel_CB_img_1_B.place(x = 270, y = 35)
+        self.f_champ_speel_CB_img_1_B.pack(), self.f_champ_speel_CB_img_1_B.place(x = 170, y = 35)
 
         self.f_champ_speel_CB_img_2_B = Button(self.root, bg = "black", fg = "green", image = f_get_cb_2_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.f_get_cb_2, 310, 10))
-        self.f_champ_speel_CB_img_2_B.pack(), self.f_champ_speel_CB_img_2_B.place(x = 310, y = 35)
+        self.f_champ_speel_CB_img_2_B.pack(), self.f_champ_speel_CB_img_2_B.place(x = 210, y = 35)
 
 
         self.s_champ_speel_CB_img_1_B = Button(self.root, bg = "black", fg = "green", image = s_get_cb_1_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.s_get_cb_1, 270, 50))
-        self.s_champ_speel_CB_img_1_B.pack(), self.s_champ_speel_CB_img_1_B.place(x = 270, y = 75)
+        self.s_champ_speel_CB_img_1_B.pack(), self.s_champ_speel_CB_img_1_B.place(x = 170, y = 75)
 
         self.s_champ_speel_CB_img_2_B = Button(self.root, bg = "black", fg = "green", image = s_get_cb_2_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.s_get_cb_2, 310, 50))
-        self.s_champ_speel_CB_img_2_B.pack(), self.s_champ_speel_CB_img_2_B.place(x = 310, y = 75)
+        self.s_champ_speel_CB_img_2_B.pack(), self.s_champ_speel_CB_img_2_B.place(x = 210, y = 75)
 
 
         self.t_champ_speel_CB_img_1_B = Button(self.root, bg = "black", fg = "green", image = t_get_cb_1_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.t_get_cb_1, 270, 90))
-        self.t_champ_speel_CB_img_1_B.pack(), self.t_champ_speel_CB_img_1_B.place(x = 270, y = 115)
+        self.t_champ_speel_CB_img_1_B.pack(), self.t_champ_speel_CB_img_1_B.place(x = 170, y = 115)
 
         self.t_champ_speel_CB_img_2_B = Button(self.root, bg = "black", fg = "green", image = t_get_cb_2_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.t_get_cb_2, 310, 90))
-        self.t_champ_speel_CB_img_2_B.pack(), self.t_champ_speel_CB_img_2_B.place(x = 310, y = 115)
+        self.t_champ_speel_CB_img_2_B.pack(), self.t_champ_speel_CB_img_2_B.place(x = 210, y = 115)
 
 
         self.fo_champ_speel_CB_img_1_B = Button(self.root, bg = "black", fg = "green", image = fo_get_cb_1_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.fo_get_cb_1, 270, 130))
-        self.fo_champ_speel_CB_img_1_B.pack(), self.fo_champ_speel_CB_img_1_B.place(x = 270, y = 155)
+        self.fo_champ_speel_CB_img_1_B.pack(), self.fo_champ_speel_CB_img_1_B.place(x = 170, y = 155)
 
         self.fo_champ_speel_CB_img_2_B = Button(self.root, bg = "black", fg = "green", image = fo_get_cb_2_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.fo_get_cb_2, 310, 130))
-        self.fo_champ_speel_CB_img_2_B.pack(), self.fo_champ_speel_CB_img_2_B.place(x = 310, y = 155)
+        self.fo_champ_speel_CB_img_2_B.pack(), self.fo_champ_speel_CB_img_2_B.place(x = 210, y = 155)
 
 
         self.fi_champ_speel_CB_img_1_B = Button(self.root, bg = "black", fg = "green", image = fi_get_cb_1_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.fi_get_cb_1, 270, 170))
-        self.fi_champ_speel_CB_img_1_B.pack(), self.fi_champ_speel_CB_img_1_B.place(x = 270, y = 195)
+        self.fi_champ_speel_CB_img_1_B.pack(), self.fi_champ_speel_CB_img_1_B.place(x = 170, y = 195)
 
         self.fi_champ_speel_CB_img_2_B = Button(self.root, bg = "black", fg = "green", image = fi_get_cb_2_im, font = "Courier 8", border = False, command = lambda: self.spell_command(self.fi_get_cb_2, 310, 170))
-        self.fi_champ_speel_CB_img_2_B.pack(), self.fi_champ_speel_CB_img_2_B.place(x = 310, y = 195)
+        self.fi_champ_speel_CB_img_2_B.pack(), self.fi_champ_speel_CB_img_2_B.place(x = 210, y = 195)
 
 
         self.root.mainloop()
@@ -229,7 +230,7 @@ class Spell_Tracker():
         
         if spell != "Smite":
             self.time_label = Label(self.root, text = spell_cd[spell], background = "black", foreground = "red", font = "Courier 10 bold", width = 3)
-            self.time_label.pack(), self.time_label.place(x = x, y = y + 30)
+            self.time_label.pack(), self.time_label.place(x = x - 100, y = y + 30)
             threading.Thread(target = self.spell_timer_command, args = (self.time_label, spell_cd[spell])).start()
 
     def spell_timer_command(self, label, timee):
