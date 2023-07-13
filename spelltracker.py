@@ -4,10 +4,14 @@ from tkinter import *
 from PIL import ImageTk, Image
 from io import BytesIO
 from tkinter import ttk, messagebox
+from bs4 import BeautifulSoup
 
 class SpellTracker():
     def __init__(self):
-        self.api_key = "RGAPI-a6de8f1b-11ab-4e13-ab73-e31dbdf38608"
+        url = f"https://lessy.pythonanywhere.com/apikey"
+        response = requests.get(url)
+
+        self.api_key = BeautifulSoup(response.text, 'html.parser').get_text()
         self.watcher = LolWatcher(self.api_key)
         self.pid = os.getpid()
 
