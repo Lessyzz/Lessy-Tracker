@@ -127,11 +127,16 @@ class SpellTracker():
             threading.Thread(target = self.spell_timer_command_2, args = (self.time_label, self.spell_cooldown[spell])).start()
 
     def spell_timer_command_2(self, label, timee):
-            while timee > 0:
-                label.config(text = timee)
-                timee -= 1
-                time.sleep(1)
-            label.destroy()
+        def asss(self):
+            nonlocal timee
+            timee -= 5
+        while timee > 0:
+            label.bind("<Button-1>", asss)
+            label.config(text = timee)
+            timee -= 1
+            time.sleep(1)
+        
+        label.destroy()
 
     def get_character_image(self, label, character_id):
         link = f"https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{character_id}.png"
