@@ -375,22 +375,14 @@ class SpellTracker():
         back_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "<-", font = "Courier 8 bold", bd = 0, command = self.back_C)
         back_B.pack(side = "right", pady = 3)
 
-        # Champions
 
-        self.f_champ_L = Label(self.root, background = "#F8D7FF")
-        self.f_champ_L.pack(), self.f_champ_L.place(x = 5, y = 30)
-
-        self.s_champ_L = Label(self.root, background = "#F8D7FF")
-        self.s_champ_L.pack(), self.s_champ_L.place(x = 5, y = 70)
-
-        self.t_champ_L = Label(self.root, background = "#F8D7FF")
-        self.t_champ_L.pack(), self.t_champ_L.place(x = 5, y = 110)
-
-        self.fo_champ_L = Label(self.root, background = "#F8D7FF")
-        self.fo_champ_L.pack(), self.fo_champ_L.place(x = 5, y = 150)
-
-        self.fi_champ_L = Label(self.root, background = "#F8D7FF")
-        self.fi_champ_L.pack(), self.fi_champ_L.place(x = 5, y = 190)
+        # Champion images
+        y = 30
+        for i in range(5):
+            label = Label(self.root, background = "#F8D7FF")
+            label.pack(), label.place(x = 5, y = y)
+            threading.Thread(target = lambda: self.get_character_image(label , self.enemy_champion_ids[i])).start()
+            y += 40
 
         # Spells
 
@@ -435,12 +427,6 @@ class SpellTracker():
 
         # print(self.spell1_names)
         # print(self.spell2_names)
-
-        threading.Thread(target = lambda: self.get_character_image(self.f_champ_L , self.enemy_champion_ids[0])).start()
-        threading.Thread(target = lambda: self.get_character_image(self.s_champ_L , self.enemy_champion_ids[1])).start()
-        threading.Thread(target = lambda: self.get_character_image(self.t_champ_L , self.enemy_champion_ids[2])).start()
-        threading.Thread(target = lambda: self.get_character_image(self.fo_champ_L , self.enemy_champion_ids[3])).start()
-        threading.Thread(target = lambda: self.get_character_image(self.fi_champ_L , self.enemy_champion_ids[4])).start()
 
         threading.Thread(target = lambda: self.get_spell_image_from_link(self.f_champ_spell_1_L, self.enemy_team_spells_1[0])).start()
         threading.Thread(target = lambda: self.get_spell_image_from_link(self.s_champ_spell_1_L, self.enemy_team_spells_1[1])).start()
