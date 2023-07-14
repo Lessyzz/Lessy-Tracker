@@ -326,25 +326,24 @@ class SpellTracker():
         
 
         # print(self.player_names)
-        # print(self.champion_names)
-
-        # print(self.spell1_names)
-        # print(self.spell2_names)
-
-
         # print(self.ally_team_player_names)
-        # print(self.ally_team_champion_names)
-        
-        # print(self.ally_team_spells_1)
-        # print(self.ally_team_spells_2)
-
-        # print(self.champion_ids)
-
         # print(self.enemy_team_player_names)
+
+        # print(self.champion_names)
+        # print(self.ally_team_champion_names)
         # print(self.enemy_team_champion_names)
 
+        # print(self.spell1_names)
+        # print(self.ally_team_spells_1)
         # print(self.enemy_team_spells_1)
+
+        # print(self.spell2_names)
+        # print(self.ally_team_spells_2)
         # print(self.enemy_team_spells_2)
+        
+        # print(self.champion_ids)
+        # print(self.ally_champion_ids)
+        # print(self.enemy_champion_ids)
 
         self.gui_base()
 
@@ -356,12 +355,9 @@ class SpellTracker():
         self.root.overrideredirect(True)
         self.root.attributes('-topmost', True)
         self.root.attributes('-alpha', 0.7)
-        self.gui_main()
+        self.create_title_bar()
 
-    def gui_main(self):
-
-        # Title bar
-
+    def create_title_bar(self):
         self.title_bar_F = Frame(self.root, background = "#F8D7FF", relief = "raised", bd = 0)
         self.title_bar_F.pack(fill = X)
         self.title_bar_F.bind("<B1-Motion>", self.move_app_root)
@@ -374,7 +370,9 @@ class SpellTracker():
 
         back_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "<-", font = "Courier 8 bold", bd = 0, command = self.back_C)
         back_B.pack(side = "right", pady = 3)
+        self.gui_main()
 
+    def gui_main(self):
 
         # Champion images
         y = 30
@@ -420,13 +418,7 @@ class SpellTracker():
         self.fi_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[4], 185, 195))
         self.fi_champ_spell_2_L.pack(), self.fi_champ_spell_2_L.place(x = 185, y = 190)
 
-        # print(self.enemy_team_spells_2)
 
-        # print(self.ally_champion_ids)
-        # print(self.enemy_champion_ids)
-
-        # print(self.spell1_names)
-        # print(self.spell2_names)
 
         threading.Thread(target = lambda: self.get_spell_image_from_link(self.f_champ_spell_1_L, self.enemy_team_spells_1[0])).start()
         threading.Thread(target = lambda: self.get_spell_image_from_link(self.s_champ_spell_1_L, self.enemy_team_spells_1[1])).start()
