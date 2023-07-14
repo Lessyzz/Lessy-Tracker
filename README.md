@@ -13,3 +13,5 @@ Receiving live game data with Api and processing them.
 Currently received data:
 
 Enemy and ally team; Nicknames, Champions, Spells.
+
+This program gets the api key from the "https://lessy.pythonanywhere.com/apikey" site. I made this system because api key is reloading everyday.
