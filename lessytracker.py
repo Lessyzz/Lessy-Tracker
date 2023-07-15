@@ -193,7 +193,7 @@ class LessyTracker():
         self.region_CB = ttk.Combobox(self.first_interface, value = self.region_list, width = 9, background = "black")
         self.region_CB.pack(), self.region_CB.place(x = 125, y = 80)
 
-        submit_B = Button(self.first_interface, background = "black", foreground = "green", text = "Submit", width = 9, command = self.submit_C)
+        submit_B = Button(self.first_interface, background = "black", foreground = "green", text = "Submit", width = 9, font = "Courier 10", command = self.submit_C)
         submit_B.pack(), submit_B.place(x = 125, y = 117)
 
         self.first_interface.mainloop()
