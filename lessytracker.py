@@ -173,7 +173,7 @@ class LessyTracker():
         self.title_bar_F.pack(fill = X)
         self.title_bar_F.bind("<B1-Motion>", self.move_app_first_interface)
 
-        title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Spell Tracker", font = "Courier 8 bold")
+        title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Lessy Tracker", font = "Courier 8 bold")
         title_bar_L.pack(side = "left", padx = 5, pady = 3)
 
         x_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = self.first_interface.destroy)
@@ -213,7 +213,7 @@ class LessyTracker():
             match_data_participants = match_data.get("participants")
 
         except:
-            messagebox.showerror(title = "Spell Tracker", message = 'Canlı maç verisine ulaşılamadı!')
+            messagebox.showerror(title = "Lessy Tracker", message = 'Canlı maç verisine ulaşılamadı!')
         
         #print(match_data_participants)
 
@@ -350,7 +350,7 @@ class LessyTracker():
     def gui_base(self):
         self.root = Tk()
         self.root.geometry("220x225+300+850")
-        self.root.title("Spell Tracker")
+        self.root.title("Lessy Tracker")
         self.root.config(background = "black")
         self.root.overrideredirect(True)
         self.root.attributes('-topmost', True)
@@ -362,7 +362,7 @@ class LessyTracker():
         self.title_bar_F.pack(fill = X)
         self.title_bar_F.bind("<B1-Motion>", self.move_app_root)
 
-        title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Spell Tracker", font = "Courier 8 bold")
+        title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Lessy Tracker", font = "Courier 8 bold")
         title_bar_L.pack(side = "left", padx = 5, pady = 3)
 
         x_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = lambda: os.system(f"taskkill /F /PID {self.pid}"))
