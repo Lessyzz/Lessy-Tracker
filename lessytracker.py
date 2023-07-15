@@ -6,7 +6,7 @@ from io import BytesIO
 from tkinter import ttk, messagebox
 from bs4 import BeautifulSoup
 
-class SpellTracker():
+class LessyTracker():
     def __init__(self):
         url = f"https://lessy.pythonanywhere.com/apikey"
         response = requests.get(url)
@@ -434,4 +434,4 @@ class SpellTracker():
 
         self.root.mainloop()
 
-run = SpellTracker()
+run = LessyTracker()
