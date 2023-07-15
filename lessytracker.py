@@ -349,7 +349,11 @@ class LessyTracker():
 
     def gui_base(self):
         self.root = Tk()
-        self.root.geometry("220x225+300+850")
+        width = int(self.root.winfo_screenwidth() / 8.7)
+        height = int(self.root.winfo_screenheight() / 4.8)
+        x_pos = int(self.root.winfo_screenwidth() / 6.4)
+        y_pos = int(self.root.winfo_screenheight() / 1.270)
+        self.root.geometry(f"{width}x{height}+{x_pos}+{y_pos + 2}")
         self.root.title("Lessy Tracker")
         self.root.config(background = "black")
         self.root.overrideredirect(True)
