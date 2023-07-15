@@ -1,4 +1,4 @@
-# spelltracker
+# Lessy Tracker
 Spell Tracker for League of Legends
 
 -----
