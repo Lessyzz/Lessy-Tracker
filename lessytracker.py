@@ -174,7 +174,7 @@ class LessyTracker():
         self.title_bar_F.bind("<B1-Motion>", self.move_app_first_interface)
 
         title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Lessy Tracker", font = "Courier 8 bold")
-        title_bar_L.pack(side = "left", padx = 5, pady = 3)
+        title_bar_L.pack(side = "left", padx = 2, pady = 3)
 
         x_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = self.first_interface.destroy)
         x_B.pack(side = "right", padx = 5, pady = 3)
@@ -351,7 +351,7 @@ class LessyTracker():
         self.root = Tk()
         x_pos = int(self.root.winfo_screenwidth() / 6.4)
         y_pos = int(self.root.winfo_screenheight() / 1.270)
-        self.root.geometry(f"220x225+{x_pos}+{y_pos + 2}")
+        self.root.geometry(f"125x225+{x_pos}+{y_pos + 2}")
         self.root.title("Lessy Tracker")
         self.root.config(background = "black")
         self.root.overrideredirect(True)
@@ -365,13 +365,16 @@ class LessyTracker():
         self.title_bar_F.bind("<B1-Motion>", self.move_app_root)
 
         title_bar_L = Label(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "Lessy Tracker", font = "Courier 8 bold")
-        title_bar_L.pack(side = "left", padx = 5, pady = 3)
+        title_bar_L.pack(side = "left", padx = 1, pady = 3)
 
-        x_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = lambda: os.system(f"taskkill /F /PID {self.pid}"))
-        x_B.pack(side = "right", padx = 5, pady = 3)
+        # x_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "X", font = "Courier 8 bold", bd = 0, command = lambda: os.system(f"taskkill /F /PID {self.pid}"))
+        # x_B.pack(side = "right", padx = 2, pady = 3)
+
+        # back_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "<-", font = "Courier 8 bold", bd = 0, command = self.back_C)
+        # back_B.pack(side = "right", pady = 3)
 
         back_B = Button(self.title_bar_F, background = "#F8D7FF", foreground = "black", text = "<-", font = "Courier 8 bold", bd = 0, command = self.back_C)
-        back_B.pack(side = "right", pady = 3)
+        back_B.pack(side = "right", padx = 2, pady = 3)
         self.gui_main()
 
     def gui_main(self):
@@ -386,39 +389,39 @@ class LessyTracker():
 
         # Spells
 
-        self.f_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[0], 150, 35))
-        self.f_champ_spell_1_L.pack(), self.f_champ_spell_1_L.place(x = 150, y = 30)
+        self.f_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[0], 55, 35))
+        self.f_champ_spell_1_L.pack(), self.f_champ_spell_1_L.place(x = 55, y = 30)
 
-        self.f_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[0], 185, 35))
-        self.f_champ_spell_2_L.pack(), self.f_champ_spell_2_L.place(x = 185, y = 30)
-
-
-        self.s_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[1], 150, 75))
-        self.s_champ_spell_1_L.pack(), self.s_champ_spell_1_L.place(x = 150, y = 70)
-
-        self.s_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[1], 185, 75))
-        self.s_champ_spell_2_L.pack(), self.s_champ_spell_2_L.place(x = 185, y = 70)
+        self.f_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[0], 90, 35))
+        self.f_champ_spell_2_L.pack(), self.f_champ_spell_2_L.place(x = 90, y = 30)
 
 
-        self.t_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[2], 150, 115))
-        self.t_champ_spell_1_L.pack(), self.t_champ_spell_1_L.place(x = 150, y = 110)
+        self.s_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[1], 55, 75))
+        self.s_champ_spell_1_L.pack(), self.s_champ_spell_1_L.place(x = 55, y = 70)
 
-        self.t_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[2], 185, 115))
-        self.t_champ_spell_2_L.pack(), self.t_champ_spell_2_L.place(x = 185, y = 110)
-
-
-        self.fo_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[3], 150, 155))
-        self.fo_champ_spell_1_L.pack(), self.fo_champ_spell_1_L.place(x = 150, y = 150)
-
-        self.fo_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[3], 185, 155))
-        self.fo_champ_spell_2_L.pack(), self.fo_champ_spell_2_L.place(x = 185, y = 150)
+        self.s_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[1], 90, 75))
+        self.s_champ_spell_2_L.pack(), self.s_champ_spell_2_L.place(x = 90, y = 70)
 
 
-        self.fi_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[4], 150, 195))
-        self.fi_champ_spell_1_L.pack(), self.fi_champ_spell_1_L.place(x = 150, y = 190)
+        self.t_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[2], 55, 115))
+        self.t_champ_spell_1_L.pack(), self.t_champ_spell_1_L.place(x = 55, y = 110)
 
-        self.fi_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[4], 185, 195))
-        self.fi_champ_spell_2_L.pack(), self.fi_champ_spell_2_L.place(x = 185, y = 190)
+        self.t_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[2], 90, 115))
+        self.t_champ_spell_2_L.pack(), self.t_champ_spell_2_L.place(x = 90, y = 110)
+
+
+        self.fo_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[3], 55, 155))
+        self.fo_champ_spell_1_L.pack(), self.fo_champ_spell_1_L.place(x = 55, y = 150)
+
+        self.fo_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[3], 90, 155))
+        self.fo_champ_spell_2_L.pack(), self.fo_champ_spell_2_L.place(x = 90, y = 150)
+
+
+        self.fi_champ_spell_1_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_1[4], 55, 195))
+        self.fi_champ_spell_1_L.pack(), self.fi_champ_spell_1_L.place(x = 55, y = 190)
+
+        self.fi_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[4], 90, 195))
+        self.fi_champ_spell_2_L.pack(), self.fi_champ_spell_2_L.place(x = 90, y = 190)
 
 
 
