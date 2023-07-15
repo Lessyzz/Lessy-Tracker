@@ -159,7 +159,7 @@ class SpellTracker():
     def first_gui(self):
         self.first_interface = Tk()
         self.first_interface.geometry(f"300x150+{int(self.first_interface.winfo_screenwidth() / 2)}+{int(self.first_interface.winfo_screenheight() / 2)}")
-        self.first_interface.title("Spell Tracker")
+        self.first_interface.title("Lessy Tracker")
         self.first_interface.config(background = "black")
         self.first_interface.overrideredirect(True)
         self.first_interface.attributes('-topmost', True)
