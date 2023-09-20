@@ -4,14 +4,15 @@ from tkinter import *
 from PIL import ImageTk, Image
 from io import BytesIO
 from tkinter import ttk, messagebox
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 
 class LessyTracker():
     def __init__(self):
-        url = f"https://lessy.pythonanywhere.com/apikey"
-        response = requests.get(url)
+        # url = f"https://lessy.pythonanywhere.com/apikey"
+        # response = requests.get(url)
 
-        self.api_key = BeautifulSoup(response.text, 'html.parser').get_text()
+        # self.api_key = BeautifulSoup(response.text, 'html.parser').get_text()
+        self.api_key = "RGAPI-e21c2591-8fed-4824-b691-4aa49e0915de"
         self.watcher = LolWatcher(self.api_key)
         self.pid = os.getpid()
 
@@ -211,7 +212,6 @@ class LessyTracker():
                 match_data = response.json()
             
             match_data_participants = match_data.get("participants")
-
         except:
             messagebox.showerror(title = "Lessy Tracker", message = 'Canlı maç verisine ulaşılamadı!')
         
@@ -422,8 +422,6 @@ class LessyTracker():
 
         self.fi_champ_spell_2_L = Button(self.root, background = "#F8D7FF", command = lambda: self.spell_timer_command_1(self.enemy_team_spells_2[4], 90, 195))
         self.fi_champ_spell_2_L.pack(), self.fi_champ_spell_2_L.place(x = 90, y = 190)
-
-
 
         threading.Thread(target = lambda: self.get_spell_image_from_link(self.f_champ_spell_1_L, self.enemy_team_spells_1[0])).start()
         threading.Thread(target = lambda: self.get_spell_image_from_link(self.s_champ_spell_1_L, self.enemy_team_spells_1[1])).start()
