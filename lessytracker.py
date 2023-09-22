@@ -44,7 +44,7 @@ class LessyTracker():
             "Heal" : 240,
             "Ghost" : 210}
 
-        self.region_list = ["TR1", "EUW1", "NA1", "EUN1", "RU1"]
+        self.region_list = ["TR1", "EUW1", "NA1", "EUN1", "RU", "LA2", "KR", "JP1", "BR1"]
 
         self.champion_id_list = {
     266: "Aatrox", 103: "Ahri", 84: "Akali", 166: "Akshan", 12: "Alistar", 32: "Amumu", 34: "Anivia", 1: "Annie",
