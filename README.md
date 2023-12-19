@@ -17,4 +17,4 @@ Enemy and ally team; Nicknames, Champions, Spells.
 
 This application is approved by Riot Games. There is no risk of ban!
 
-![image](https://github.com/Lessyzz/Lessy-Tracker/assets/102208615/637eff3c-b27a-48b5-93b9-4d58f6109517)
+![image](https://github.com/Lessyzz/Lessy-Tracker/assets/102208615/c8f89eb9-a1bc-4d1e-b6d4-45b3ab926ffe)
