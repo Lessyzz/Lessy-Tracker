@@ -1,19 +1,40 @@
 import requests, threading, time, os
-from riotwatcher import LolWatcher
 from tkinter import *
 from PIL import ImageTk, Image
 from io import BytesIO
 from tkinter import ttk, messagebox
-#from bs4 import BeautifulSoup
+
+class APIRequests():
+    def __init__(self, apiKey : str, username: str, tag: str, region: str, server: str):
+        self.api_key = apiKey
+        self.username = username
+        self.tag = tag
+        self.region = region
+        self.server = server
+
+        self.puuid = None
+        self.id = None
+
+    def get_puuid_with_riotID(self): # Username and tag
+        url = f"https://{self.region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{self.username}/{self.tag}?api_key={self.api_key}"
+        response = requests.get(url).json()
+        self.puuid = response["puuid"]
+        return self.puuid
+
+    def get_id_with_puuid(self):
+        url = f"https://{self.server}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{self.puuid}?api_key={self.api_key}"
+        response = requests.get(url).json()
+        self.id = response["id"]
+        return self.id
+
+    def get_live_game_with_id(self):
+        url = f"https://{self.server}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{self.id}?api_key={self.api_key}"
+        response = requests.get(url).json()
+        return response
 
 class LessyTracker():
     def __init__(self):
-        # url = f"https://lessy.pythonanywhere.com/apikey"
-        # response = requests.get(url)
-
-        # self.api_key = BeautifulSoup(response.text, 'html.parser').get_text()
         self.api_key = "RGAPI-e21c2591-8fed-4824-b691-4aa49e0915de"
-        self.watcher = LolWatcher(self.api_key)
         self.pid = os.getpid()
 
         self.champion_ids = []
@@ -44,7 +65,8 @@ class LessyTracker():
             "Heal" : 240,
             "Ghost" : 210}
 
-        self.region_list = ["TR1", "EUW1", "NA1", "EUN1", "RU", "LA2", "KR", "JP1", "BR1"]
+        self.region_list = ["Europe", "America", "Asia"]
+        self.server_list = ["TR1", "EUW1", "NA1", "EUN1", "RU", "LA2", "KR", "JP1", "BR1"]
 
         self.champion_id_list = {
     266: "Aatrox", 103: "Ahri", 84: "Akali", 166: "Akshan", 12: "Alistar", 32: "Amumu", 34: "Anivia", 1: "Annie",
@@ -118,8 +140,19 @@ class LessyTracker():
 
     def submit_C(self):
         self.nickname = self.nickname_E.get()
+        self.tag = self.tag_E.get()
         self.region = self.region_CB.get()
-        self.live_game_data()
+        self.server = self.server_CB.get()
+
+        self.ApiRequests = APIRequests(self.api_key, self.nickname, self.tag, self.region, self.server)
+        try:
+            self.puuid = self.ApiRequests.get_puuid_with_riotID()
+            self.id = self.ApiRequests.get_id_with_puuid()
+        except:
+            messagebox.showerror(title = "Lessy Tracker", message = 'Live match data could not be accessed!')
+            return None
+        else:
+            self.live_game_data()
 
     def spell_timer_command_1(self, spell, x, y):
         if spell != "Smite":
@@ -159,11 +192,11 @@ class LessyTracker():
 
     def first_gui(self):
         self.first_interface = Tk()
-        self.first_interface.geometry(f"300x150+{int(self.first_interface.winfo_screenwidth() / 2)}+{int(self.first_interface.winfo_screenheight() / 2)}")
+        self.first_interface.geometry(f"300x230+{int(self.first_interface.winfo_screenwidth() / 2)}+{int(self.first_interface.winfo_screenheight() / 2)}")
         self.first_interface.title("Lessy Tracker")
         self.first_interface.config(background = "black")
         self.first_interface.overrideredirect(True)
-        self.first_interface.attributes('-topmost', True)
+        self.first_interface.attributes('-topmost', True)        
         self.first_gui_main()
 
     def first_gui_main(self):
@@ -185,38 +218,45 @@ class LessyTracker():
         nickname_L = Label(self.first_interface, background = "black", foreground = "green", text = "Nickname:", font = "Courier 10 bold")
         nickname_L.pack(), nickname_L.place(x = 20, y = 40)
 
+        tag_L = Label(self.first_interface, background = "black", foreground = "green", text = "Tag:", font = "Courier 10 bold")
+        tag_L.pack(), tag_L.place(x = 20, y = 80)
+
         region_L = Label(self.first_interface, background = "black", foreground = "green", text = "Region:", font = "Courier 10 bold")
-        region_L.pack(), region_L.place(x = 20, y = 80)
+        region_L.pack(), region_L.place(x = 20, y = 120)
+
+        server_L = Label(self.first_interface, background = "black", foreground = "green", text = "Server:", font = "Courier 10 bold")
+        server_L.pack(), server_L.place(x = 20, y = 160)
 
         self.nickname_E = Entry(self.first_interface, background = "black", foreground = "green", font = "Courier 10 bold", width = 17)
         self.nickname_E.pack(), self.nickname_E.place(x = 125, y = 40), self.nickname_E.focus()
 
+        self.tag_E = Entry(self.first_interface, background = "black", foreground = "green", font = "Courier 10 bold", width = 17)
+        self.tag_E.pack(), self.tag_E.place(x = 125, y = 80)
+
         self.region_CB = ttk.Combobox(self.first_interface, value = self.region_list, width = 9, background = "black")
-        self.region_CB.pack(), self.region_CB.place(x = 125, y = 80)
+        self.region_CB.pack(), self.region_CB.place(x = 125, y = 120)
+
+        self.server_CB = ttk.Combobox(self.first_interface, value = self.server_list, width = 9, background = "black")
+        self.server_CB.pack(), self.server_CB.place(x = 125, y = 160)
 
         submit_B = Button(self.first_interface, background = "black", foreground = "green", text = "Submit", width = 9, font = "Courier 10", command = self.submit_C)
-        submit_B.pack(), submit_B.place(x = 125, y = 117)
+        submit_B.pack(), submit_B.place(x = 125, y = 197)
 
         self.first_interface.mainloop()
 
     def live_game_data(self):
         try:
-            player = self.watcher.summoner.by_name(self.region, self.nickname)
-            id = player.get("id")
-
-            url = f"https://{self.region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{id}?api_key={self.api_key}"
-            response = requests.get(url)
-
-            if response.status_code == 200:
-                self.first_interface.destroy()
-                match_data = response.json()
-            
+            match_data = self.ApiRequests.get_live_game_with_id()
             match_data_participants = match_data.get("participants")
+            match_data_participants[9].get("summonerName")
         except:
-            messagebox.showerror(title = "Lessy Tracker", message = 'Canlı maç verisine ulaşılamadı!')
+            messagebox.showerror(title = "Lessy Tracker", message = 'Live match data could not be accessed!')
+            return None
+        else:
+            self.first_interface.destroy()
         
         #print(match_data_participants)
-
+            
         # Get player names
         for i in range(10):
             self.player_names.append(match_data_participants[i].get("summonerName"))
@@ -243,87 +283,91 @@ class LessyTracker():
 
         
         # Get player names, champion names and spells of teams
-        if self.player_names.index(self.nickname) > 4:
+        try:
+            if self.player_names.index(self.nickname) > 4:
 
-            # Player names
-            for i in self.player_names[5:10]:
-                self.ally_team_player_names.append(i)
+                # Player names
+                for i in self.player_names[5:10]:
+                    self.ally_team_player_names.append(i)
 
-            for i in self.player_names[0:5]:
-                self.enemy_team_player_names.append(i)
-
-
-            # Champion names
-            for i in self.champion_names[5:10]:
-                self.ally_team_champion_names.append(i)
-
-            for i in self.champion_names[0:5]:
-                self.enemy_team_champion_names.append(i)
+                for i in self.player_names[0:5]:
+                    self.enemy_team_player_names.append(i)
 
 
-            # Champion id's
-            for i in self.champion_ids[5:10]:
-                self.ally_champion_ids.append(i)
+                # Champion names
+                for i in self.champion_names[5:10]:
+                    self.ally_team_champion_names.append(i)
 
-            for i in self.champion_ids[0:5]:
-                self.enemy_champion_ids.append(i)
-
-
-            # Spell1 names
-            for i in self.spell1_names[5:10]:
-                self.ally_team_spells_1.append(i)
-            
-            for i in self.spell1_names[0:5]:
-                self.enemy_team_spells_1.append(i)
+                for i in self.champion_names[0:5]:
+                    self.enemy_team_champion_names.append(i)
 
 
-            # Spell2 names
-            for i in self.spell2_names[5:10]:
-                self.ally_team_spells_2.append(i)
+                # Champion id's
+                for i in self.champion_ids[5:10]:
+                    self.ally_champion_ids.append(i)
 
-            for i in self.spell2_names[0:5]:
-                self.enemy_team_spells_2.append(i)
-
-        else:
-
-            # Player names
-            for i in self.player_names[0:5]:
-                self.ally_team_player_names.append(i)
-
-            for i in self.player_names[5:10]:
-                self.enemy_team_player_names.append(i)        
+                for i in self.champion_ids[0:5]:
+                    self.enemy_champion_ids.append(i)
 
 
-            # Champion names
-            for i in self.champion_names[0:5]:
-                self.ally_team_champion_names.append(i)
+                # Spell1 names
+                for i in self.spell1_names[5:10]:
+                    self.ally_team_spells_1.append(i)
                 
-            for i in self.champion_names[5:10]:
-                self.enemy_team_champion_names.append(i)
+                for i in self.spell1_names[0:5]:
+                    self.enemy_team_spells_1.append(i)
 
-            
-            # Champion id's
-            for i in self.champion_ids[0:5]:
-                self.ally_champion_ids.append(i)
 
-            for i in self.champion_ids[5:10]:
-                self.enemy_champion_ids.append(i)
-            
+                # Spell2 names
+                for i in self.spell2_names[5:10]:
+                    self.ally_team_spells_2.append(i)
 
-            # Spell1 names
-            for i in self.spell1_names[0:5]:
-                self.ally_team_spells_1.append(i)
+                for i in self.spell2_names[0:5]:
+                    self.enemy_team_spells_2.append(i)
 
-            for i in self.spell1_names[5:10]:
-                self.enemy_team_spells_1.append(i) 
+            else:
 
-            # Spell2 names
-            for i in self.spell2_names[0:5]:
-                self.ally_team_spells_2.append(i)
-            
-            for i in self.spell2_names[5:10]:
-                self.enemy_team_spells_2.append(i)
+                # Player names
+                for i in self.player_names[0:5]:
+                    self.ally_team_player_names.append(i)
+
+                for i in self.player_names[5:10]:
+                    self.enemy_team_player_names.append(i)        
+
+
+                # Champion names
+                for i in self.champion_names[0:5]:
+                    self.ally_team_champion_names.append(i)
+                    
+                for i in self.champion_names[5:10]:
+                    self.enemy_team_champion_names.append(i)
+
+                
+                # Champion id's
+                for i in self.champion_ids[0:5]:
+                    self.ally_champion_ids.append(i)
+
+                for i in self.champion_ids[5:10]:
+                    self.enemy_champion_ids.append(i)
+                
+
+                # Spell1 names
+                for i in self.spell1_names[0:5]:
+                    self.ally_team_spells_1.append(i)
+
+                for i in self.spell1_names[5:10]:
+                    self.enemy_team_spells_1.append(i) 
+
+                # Spell2 names
+                for i in self.spell2_names[0:5]:
+                    self.ally_team_spells_2.append(i)
+                
+                for i in self.spell2_names[5:10]:
+                    self.enemy_team_spells_2.append(i)
         
+        except:
+            messagebox.showerror(title = "Lessy Tracker", message = 'Riot api problem! Closing Lessy Tracker.')
+            return None
 
         # print(self.player_names)
         # print(self.ally_team_player_names)
@@ -345,7 +389,8 @@ class LessyTracker():
         # print(self.ally_champion_ids)
         # print(self.enemy_champion_ids)
 
-        self.gui_base()
+        else:
+            self.gui_base()
 
     def gui_base(self):
         self.root = Tk()
