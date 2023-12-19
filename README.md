@@ -15,4 +15,6 @@ Currently received data:
 
 Enemy and ally team; Nicknames, Champions, Spells.
 
-This program gets the api key from the https://lessy.pythonanywhere.com/apikey site. I made this system because api key is reloading everyday.
+This application is approved by Riot Games. There is no risk of ban!
+
+![image](https://github.com/Lessyzz/Lessy-Tracker/assets/102208615/637eff3c-b27a-48b5-93b9-4d58f6109517)
