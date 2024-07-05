@@ -34,7 +34,7 @@ class APIRequests():
 
 class LessyTracker():
     def __init__(self):
-        self.api_key = "RGAPI-e21c2591-8fed-4824-b691-4aa49e0915de"
+        self.api_key = "API-KEY"
         self.pid = os.getpid()
 
         self.champion_ids = []
